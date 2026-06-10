@@ -121,6 +121,24 @@ page = st.sidebar.radio(
 )
 
 st.sidebar.markdown("---")
+st.sidebar.subheader("🖨️ Action Édition")
+
+# Génération du fichier PDF et création du bouton de téléchargement
+with st.sidebar:
+    try:
+        pdf_data = generer_rapport_pdf()
+        st.download_button(
+            label="📥 Télécharger le Rapport PDF",
+            data=pdf_data,
+            file_name="rapport_analyse_fonctionnelle_extrusion.pdf",
+            mime="application/pdf",
+            use_container_width=True
+        )
+        st.success("PDF prêt pour le tirage !")
+    except Exception as e:
+        st.error("Erreur lors de la préparation du PDF.")
+
+st.sidebar.markdown("---")
 st.sidebar.subheader("🏢 Contexte Industriel")
 st.sidebar.info("**Modèle d'application :** Ligne d'extrusion intégrée (Type TPR / Profilés Aluminium de haute précision).")
 
